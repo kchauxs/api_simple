@@ -26,7 +26,7 @@ func init() {
 
 // loadSignFiles Carga la información de los certificados de firma y confirmación
 func loadSignFiles() {
-	signBytes, err := ioutil.ReadFile("./certificados/app.rsa")
+	signBytes, err := ioutil.ReadFile("./certificates/app.rsa")
 	if err != nil {
 		fmt.Printf("Error al leer el archivo: %v", err)
 	}
@@ -36,7 +36,7 @@ func loadSignFiles() {
 		fmt.Printf("Error al leer el archivo: %v", err)
 	}
 
-	verifyBytes, err := ioutil.ReadFile("./certificados/app.rsa.pub")
+	verifyBytes, err := ioutil.ReadFile("./certificates/app.rsa.pub")
 	if err != nil {
 		fmt.Printf("Error al leer el archivo: %v", err)
 	}
@@ -55,7 +55,7 @@ func generateJWT(u Model) (string, error) {
 		StandardClaims: jwt.StandardClaims{
 			// Tiempo de expiración del token: 1 semana
 			ExpiresAt: time.Now().Add(time.Hour * 24 * 1).Unix(),
-			Issuer:    "Cursos EDteam",
+			Issuer:    "api simple",
 		},
 	}
 

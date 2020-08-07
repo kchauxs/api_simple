@@ -75,7 +75,9 @@ func (s Storage) Update(e string, z *Model) *Model {
 
 //Login .
 func (s Storage) Login(e, p string) *Model {
+
 	for _, v := range s {
+
 		if v.Email == e && v.Password == p {
 			return v
 		}

@@ -163,14 +163,15 @@ func GetAllPaginate(c echo.Context) error {
 	return c.JSON(http.StatusOK, r)
 }
 
+//Login .
 func Login(c echo.Context) error {
 	u := &Model{}
 	err := c.Bind(u)
 	if err != nil {
 		r := response.Model{
 			MensajeError: response.MensajeError{
-				Codigo:    "E003",
-				Contenido: "Mal objeto",
+				Codigo:    "E001",
+				Contenido: "Formato incorrecto",
 			},
 		}
 
@@ -188,7 +189,6 @@ func Login(c echo.Context) error {
 
 		return c.JSON(http.StatusBadRequest, r)
 	}
-
 	d.Password = ""
 	token, err := generateJWT(*d)
 	if err != nil {
@@ -225,9 +225,9 @@ func getTokenFromAuthorizationHeader(r *http.Request) (string, error) {
 	// Should be a bearer token
 	if len(ah) > 6 && strings.ToUpper(ah[0:6]) == "BEARER" {
 		return ah[7:], nil
-	} else {
-		return "", errors.New("el header no contiene la palabra Bearer")
 	}
+	return "", errors.New("el header no contiene la palabra Bearer")
+
 }
 
 // getTokenFromURLParams busca el token de la URL
