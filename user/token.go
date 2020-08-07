@@ -53,7 +53,7 @@ func generateJWT(u Model) (string, error) {
 	c := Claim{
 		Usuario: u,
 		StandardClaims: jwt.StandardClaims{
-			// Tiempo de expiración del token: 1 semana
+			// Tiempo de expiración del token: 1 dia
 			ExpiresAt: time.Now().Add(time.Hour * 24 * 1).Unix(),
 			Issuer:    "api simple",
 		},

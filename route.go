@@ -8,7 +8,6 @@ import (
 
 func startRoutes(e *echo.Echo) {
 	e.POST("/blouses", blouse.Create, user.ValidateJWT)
-	//e.POST("/blouses", blouse.Create)
 	e.GET("/blouses", blouse.GetAll)
 	e.POST("/users", user.Login)
 	e.POST("/api/v1/users", user.Create)

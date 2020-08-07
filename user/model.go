@@ -1,8 +1,6 @@
 package user
 
 import (
-	"fmt"
-
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
@@ -45,9 +43,9 @@ func (s Storage) GetAllPaginate(l, p int) []*Model {
 	us := make([]*Model, 0, len(s))
 	for _, v := range s {
 		us = append(us, v)
-		fmt.Println(v)
+
 	}
-	fmt.Println(us)
+
 	offset := l*p - l
 	r := us[offset : l*p]
 	return r
