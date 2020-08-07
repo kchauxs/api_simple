@@ -10,37 +10,37 @@ var storage Storage
 
 func init() {
 	storage = make(map[string]*Model)
-	u1 := &Model{
-		FirstName: "Kevin",
-		Email:     "kevinchaux@gmail.com",
-		Password:  "123456",
+	u := &Model{
+		FirstName: "admin",
+		Email:     "admin@gmail.com",
+		Password:  "pass120012",
 	}
-	u2 := &Model{
-		FirstName: "Juan",
-		Email:     "juan@ed.team",
-		Password:  "123456",
-	}
-	storage.Create(u1)
-	storage.Create(u2)
+
+	storage.Create(u)
 }
 
+//Model Instancias
 type Model struct {
 	FirstName string `json:"first_name"`
 	Email     string `json:"email"`
 	Password  string `json:"password"`
 }
 
+//Storage objeto que simula la base datos
 type Storage map[string]*Model
 
+//Create crea usuarios
 func (s Storage) Create(m *Model) *Model {
 	s[m.Email] = m
 	return s[m.Email]
 }
 
+//GetAll todos los usuarios
 func (s Storage) GetAll() Storage {
 	return s
 }
 
+//GetAllPaginate .
 func (s Storage) GetAllPaginate(l, p int) []*Model {
 	us := make([]*Model, 0, len(s))
 	for _, v := range s {
@@ -53,6 +53,7 @@ func (s Storage) GetAllPaginate(l, p int) []*Model {
 	return r
 }
 
+//GetByEmail .
 func (s Storage) GetByEmail(e string) *Model {
 	if v, ok := s[e]; ok {
 		return v
@@ -61,15 +62,18 @@ func (s Storage) GetByEmail(e string) *Model {
 	return nil
 }
 
+//Delete .
 func (s Storage) Delete(e string) {
 	delete(s, e)
 }
 
+//Update .
 func (s Storage) Update(e string, z *Model) *Model {
 	s[e] = z
 	return s[e]
 }
 
+//Login .
 func (s Storage) Login(e, p string) *Model {
 	for _, v := range s {
 		if v.Email == e && v.Password == p {
@@ -80,6 +84,7 @@ func (s Storage) Login(e, p string) *Model {
 	return nil
 }
 
+//Claim  .
 type Claim struct {
 	Usuario Model
 	jwt.StandardClaims
