@@ -14,7 +14,7 @@ func Create(c echo.Context) error {
 		r := response.Model{
 			MensajeError: response.MensajeError{
 				"E102",
-				"El objeto blusa está mal enviado",
+				"El objeto reloj está mal enviado",
 			},
 		}
 		return c.JSON(http.StatusBadRequest, r)
@@ -24,7 +24,7 @@ func Create(c echo.Context) error {
 	r := response.Model{
 		MensajeOK: response.MensajeOK{
 			"A001",
-			"blusa creado correctamente",
+			"reloj creado correctamente",
 		},
 		Data: d,
 	}
@@ -38,7 +38,7 @@ func GetAll(c echo.Context) error {
 		r := response.Model{
 			MensajeError: response.MensajeError{
 				"E102",
-				"El objeto blusa está mal enviado",
+				"El objeto blreloj está mal enviado",
 			},
 		}
 		return c.JSON(http.StatusBadRequest, r)
@@ -48,7 +48,7 @@ func GetAll(c echo.Context) error {
 	r := response.Model{
 		MensajeOK: response.MensajeOK{
 			"A111",
-			"todas las blusas",
+			"todas los relojes",
 		},
 		Data: d,
 	}
