@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo"
 )
 
+//Create .
 func Create(c echo.Context) error {
 	m := &Model{}
 	err := c.Bind(m)
@@ -31,6 +32,7 @@ func Create(c echo.Context) error {
 	return c.JSON(http.StatusCreated, r)
 }
 
+//GetAll .
 func GetAll(c echo.Context) error {
 	m := &Model{}
 	err := c.Bind(m)
